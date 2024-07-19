@@ -1,6 +1,5 @@
 <script lang="ts" setup>
     import { ref, toRefs } from 'vue';
-
     const props = defineProps<{
         rnNo: number;
     }>();
@@ -18,7 +17,7 @@
     );
 
     const resetNotes = () =>
-        (rightNotes.value = Array(4)
+        (rightNotes.value = Array(5)
             .fill(undefined)
             .map(() => notes[Math.floor(Math.random() * notes.length)]));
 

@@ -46,7 +46,7 @@
         else if (!equal(n[0], rightNotes.value[rightNotesNo.value])) rightNotesNo.value = 0;
         else rightNotesNo.value++;
 
-        if (rightNotesNo.value == 4) {
+        if (rightNotesNo.value == 5) {
             notes.value!.resetNotes();
             rightNotesNo.value = 0;
         }
@@ -54,11 +54,19 @@
 </script>
 
 <template>
-    <div class="flex flex-wrap justify-center">
-        <Notes @note="(e) => (notesPlayed = e)" ref="notes" :rn-no="rightNotesNo" />
-        <p>Timing window: ±<input type="text" v-model.number="offset" />ms</p>
+    <div class="w-screen h-screen overflow-hidden bg-stone-950 text-white">
+        <div class="flex flex-wrap justify-center">
+            <Notes @note="(e) => (notesPlayed = e)" ref="notes" :rn-no="rightNotesNo" />
+            <p>
+                Timing window: ±<input
+                    class="bg-transparent border-none outline-none"
+                    type="text"
+                    v-model.number="offset"
+                />ms
+            </p>
+        </div>
+        <Metronome :bpm="bpm" class="fixed bottom-56 right-56">
+            <input class="bg-transparent text-4xl text-center outline-none border-none" v-model.number="bpm" />
+        </Metronome>
     </div>
-    <Metronome :bpm="bpm" class="fixed bottom-56 right-56">
-        <input class="bg-transparent text-4xl text-center outline-none border-none" v-model.number="bpm" />
-    </Metronome>
 </template>

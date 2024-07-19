@@ -1,15 +1,24 @@
 <script lang="ts" setup>
+    import * as Tone from 'tone';
     import { ref } from 'vue';
     import WhiteKey from './WhiteKey.vue';
     import BlackKey from './BlackKey.vue';
+
+    const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
     const whiteNotes = ref(['C', 'D', 'E', 'F', 'G', 'A', 'B']);
     const blackNotes = ref(['C#', 'D#', null, 'F#', 'G#', 'A#']);
 
     const ws = new WebSocket(`ws://${import.meta.env.VITE_IP}:${import.meta.env.VITE_PORT}`);
 
-    const noteStart = (note: string) => ws.send('start ' + note);
-    const noteStop = (note: string) => ws.send('stop ' + note);
+    const noteStart = (note: string) => {
+        ws.send('start ' + note);
+        synth.triggerAttack(note + '4', Tone.now());
+    };
+    const noteStop = (note: string) => {
+        ws.send('stop ' + note);
+        synth.triggerRelease(note + '4', Tone.now());
+    };
 </script>
 
 <template>
