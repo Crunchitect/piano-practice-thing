@@ -12,7 +12,7 @@
 
     const notes = ['Ab', 'A', 'A#', 'Bb', 'B', 'C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#'];
     const rightNotes = ref(
-        Array(4)
+        Array(5)
             .fill(undefined)
             .map(() => notes[Math.floor(Math.random() * notes.length)])
     );
@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <div class="flex gap-72">
+    <div class="flex justify-evenly w-full">
         <p :class="`font-bold text-[20vmin] ${index < noRef && 'text-green-500'}`" v-for="(note, index) in rightNotes">
             {{ note }}
         </p>
