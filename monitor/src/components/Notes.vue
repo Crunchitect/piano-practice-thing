@@ -39,7 +39,10 @@
 
 <template>
     <div class="flex justify-evenly w-full">
-        <p :class="`font-bold text-[20vmin] ${index < noRef && 'text-green-500'}`" v-for="(note, index) in rightNotes">
+        <p
+            :class="`font-bold text-[20vmin] ${index < noRef && 'text-green-300 drop-shadow-glow'}`"
+            v-for="(note, index) in rightNotes"
+        >
             {{ note }}
         </p>
     </div>
